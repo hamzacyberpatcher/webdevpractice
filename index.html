@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e7b6affcaa.js" crossorigin="anonymous"></script>
+    <title>Advanced Web Design Challenge</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #a232a8, #a232a8);
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #a232a8;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+
+        nav a:hover {
+            background-color: #a232a8;
+            border-radius: 5px;
+        }
+
+        .menutoggle
+        {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #a232a8;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: url('./img.jpeg') no-repeat center/cover;
+            color: white;
+            border-radius: 10px;
+            position: relative; /* Ensures pseudo-element is positioned relative to this */
+            overflow: hidden; /* Prevents pseudo-element overflow */
+        }
+
+        .hero::before {
+            content: ""; /* Required for pseudo-elements */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 0; /* Places the overlay behind text */
+            border-radius: 10px;
+        }
+
+        .hero h1, .hero p {
+            position: relative; /* Ensures text appears above the overlay */
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        /* Grid Section */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid div {
+            background-color: #a232a8;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            justify-content: center;
+        }
+
+        /* Ensures testimonials don't overflow */
+        .testimonial {
+            flex: 0 0 300px; /* Default width */
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #a232a8;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer a {
+            color: #FFE1FF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #services img{
+            width: 200px;
+            background-color: transparent;
+        }
+
+        #team img{
+            width: 200px;
+            background-color: transparent;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .testimonials {
+                flex-direction: column; /* Stack items vertically */
+                align-items: center; /* Center testimonials */
+                overflow-x: hidden; /* Disable horizontal scrolling */
+            }
+
+            .testimonial {
+                flex: 1 1 auto; /* Allow flexible width */
+                width: 90%; /* Makes each testimonial take 90% of the screen width */
+                max-width: 400px; /* Limits max width for better readability */
+            }
+            .menutoggle
+            {
+                display: block;
+                position: sticky;
+                top: 0;
+            }
+            nav
+            {
+                display: none;
+            }
+            .navbar.active
+            {
+                display: flex;
+                flex-direction: column;
+                padding: 15px 0;
+                position: sticky;
+                top: 38px;
+                z-index: 10;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Advanced Web Design Challenge</h1>
+    </header>
+    <div class="menutoggle" onclick="toggleNavClick()">
+        ☰
+    </div>
+    <nav class="navbar">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <a href="#team">Our Team</a>
+    </nav>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to Our Website</h1>
+            <p>Building a better web, one line of code at a time.</p>
+        </section>
+        <!-- Services Section -->
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="grid">
+                <div>
+                    <p>Web Design</p>
+                    <img src="./webdesign.png" alt="">
+                </div>
+                <div>
+                    <p>Graphics Design</p>
+                    <img src="./graphicdesign.png" alt="">
+                </div>
+                <div>
+                    <p>SEO Optimization</p>
+                    <img src="./seo.png" alt="">
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonials">
+                <div class="testimonial">"Great service!" - Customer A</div>
+                <div class="testimonial">"Amazing designs!" - Customer B</div>
+                <div class="testimonial">"Highly recommend!" - Customer C</div>
+            </div>
+        </section>
+        <!--Team Section I just fking resued the services css cuz its too fking perfect-->
+        <section id="team">
+            <h2>Our Team</h2>
+            <div class="grid">
+                <div>
+                    <p>Optimus Prime</p>
+                    <p>Emotional Support</p>
+                    <img src="./cat1.png" alt="">
+                </div>
+                <div>
+                    <p>Mr Whiskers</p>
+                    <p>Design Lead</p>
+                    <img src="./cat2.png" alt="">
+                </div>
+                <div>
+                    <p>Anotonio Guiterrez</p>
+                    <p>Technical Lead</p>
+                    <img src="./cat3.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: example@example.com</p>
+            <p>Phone: 123-456-7890</p>
+        </section>
+    </div>
+    <footer>
+        <p>Follow us: 
+            <a href="#"><i class="fa-brands fa-facebook"></i></a> | 
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a> | 
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </p>
+        <p style="font-size: 0.8em"><i class="fa-regular fa-copyright"></i> Copyright 2420</p>
+    </footer>
+
+    <script>
+        function toggleNavClick() {
+            document.querySelector(".navbar").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
